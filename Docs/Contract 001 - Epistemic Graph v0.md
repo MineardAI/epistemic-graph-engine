@@ -6,7 +6,7 @@ Epistemic Graph v0 — a deterministic ingestion engine for exported ChatGPT con
 Goal:
 Build Contract 001: Epistemic Graph Ingestion.
 
-This contract must create an auditable foundation for later cognitive timeline, project reconstruction, evidence resolution, and claim analysis. Do not generate claims yet. Do not summarize. Do not infer psychology. Do not build UI. Do not build IBOS/Justice runtime. This is only the ingestion foundation.
+This contract must create an auditable foundation for later cognitive timeline, project reconstruction, evidence resolution, and claim analysis. Do not generate claims yet. Do not summarize. Do not infer psychology. Do not build UI. This is only the ingestion foundation.
 
 Core Architecture:
 Raw Archive
