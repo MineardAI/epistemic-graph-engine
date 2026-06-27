@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pytest
 
+from epistemic_graph.claims.builder import build_claim_artifacts
 from epistemic_graph.claims.serialization import load_jsonl, write_jsonl
 from epistemic_graph.ingest import ingest_archive
 
@@ -16,6 +17,12 @@ FIXTURE = ROOT / "tests" / "fixtures" / "sample_conversations.json"
 def contract1_artifacts(tmp_path: Path):
     output_dir = tmp_path / "contract1"
     return ingest_archive(FIXTURE, output_dir)
+
+
+@pytest.fixture()
+def contract2_artifacts(contract1_artifacts, tmp_path: Path):
+    output_dir = tmp_path / "contract2"
+    return build_claim_artifacts(contract1_artifacts.observations_path, output_dir)
 
 
 @pytest.fixture()
