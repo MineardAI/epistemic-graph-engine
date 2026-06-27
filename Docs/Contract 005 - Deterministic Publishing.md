@@ -90,7 +90,7 @@ Contract 005 converts validated artifacts from Contracts 001–004 into determin
 Create modules:
 
 ```text
-ibos/
+epistemic_graph/
     publish/
         __init__.py
         assembler.py
@@ -203,7 +203,7 @@ Manifest must separate:
 ## Build Metadata
 
 * generated_at
-* ibos_version
+* epistemic_version
 * contract_versions
 
 ## Inputs
@@ -335,7 +335,7 @@ unless that exact claim or source-backed timeline statement already exists in th
 Implement a standalone verifier:
 
 ```text
-ibos/verification/verify_package.py
+epistemic_graph/verification/verify_package.py
 ```
 
 The verifier should validate:

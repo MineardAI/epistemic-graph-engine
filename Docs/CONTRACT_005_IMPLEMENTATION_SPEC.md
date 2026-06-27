@@ -103,7 +103,7 @@ and declared views, not from `record_types`.
 `build_metadata` includes:
 
 - `generated_at`
-- `ibos_version`
+- `epistemic_version`
 - `contract_versions`
 
 `inputs` and `outputs` list relative paths, file sizes in bytes, and SHA-256

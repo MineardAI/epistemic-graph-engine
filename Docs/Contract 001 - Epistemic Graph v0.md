@@ -215,7 +215,7 @@ Done Criteria:
 * no summaries
 * no therapy/psychology inference
 * no UI
-* no IBOS runtime
+* no Epistemic Graph Engine runtime
 * no provider code
 * README explains the three-pass architecture and immutability rules
 

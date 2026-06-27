@@ -131,7 +131,7 @@ class BuildMetadata(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     generated_at: str
-    ibos_version: str
+    epistemic_version: str
     contract_versions: dict[str, str]
 
 

@@ -1,6 +1,6 @@
 # Contract 003 — Evidence Resolution Engine
 
-You are implementing **Contract 003** of the IBOS architecture.
+You are implementing **Contract 003** of the Epistemic Graph Engine architecture.
 
 Contracts 001 and 002 already exist and are considered complete.
 

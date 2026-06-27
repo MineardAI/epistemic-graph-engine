@@ -114,7 +114,7 @@ Never present phases as factual unless explicitly supported.
 
 Create:
 
-ibos/
+epistemic_graph/
 timeline/
 **init**.py
 schemas.py

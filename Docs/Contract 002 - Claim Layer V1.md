@@ -142,7 +142,7 @@ Outputs must be deterministic.
 Create a new package:
 
 ```text
-ibos/claims/
+epistemic_graph/claims/
 ```
 
 containing:

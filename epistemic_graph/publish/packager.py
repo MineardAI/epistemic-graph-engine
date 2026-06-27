@@ -105,7 +105,7 @@ def _executive_summary_rows(
 
     for key, value in (
         ("generated_at", generated_at),
-        ("ibos_version", f"epistemic-graph-engine/{PACKAGE_VERSION}"),
+        ("epistemic_version", f"epistemic-graph-engine/{PACKAGE_VERSION}"),
         ("contract_versions", _CONTRACT_VERSIONS),
     ):
         rows.append(
@@ -494,7 +494,7 @@ def _build_package_manifest(
         ),
         build_metadata=BuildMetadata(
             generated_at=generated_at,
-            ibos_version=f"epistemic-graph-engine/{PACKAGE_VERSION}",
+            epistemic_version=f"epistemic-graph-engine/{PACKAGE_VERSION}",
             contract_versions=_CONTRACT_VERSIONS,
         ),
         inputs=input_artifacts,
