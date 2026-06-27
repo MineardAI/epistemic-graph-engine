@@ -1,116 +1,84 @@
 # Epistemic Graph Engine
 
-Turn your ChatGPT conversation history into a deterministic, searchable, auditable knowledge graph.
+**Turn ChatGPT conversation history into a deterministic, auditable knowledge graph.**
 
-The Epistemic Graph Engine transforms exported AI conversations into structured evidence, claims, timelines, and verifiable reports without using LLM reasoning or inventing conclusions.
+The Epistemic Graph Engine ingests exported conversations and produces structured, traceable artifacts: evidence, claims, resolutions, timelines, and verifiable packages, without LLM reasoning, summaries, or invented conclusions.
 
-Upload a ChatGPT export, run the pipeline, and receive reproducible artifacts that answer:
+Everything is regenerable from the same input and fully traceable to source IDs.
 
-- What projects did I work on?
-- When did an idea first appear?
-- What evidence supports this claim?
-- Where are contradictions?
-- What changed over time?
-- What is still unresolved?
+## What It Answers
 
-Everything is traceable back to the original conversation.
+- What claims does the evidence actually support?
+- Where are contradictions or gaps?
+- When did concepts appear, mature, or go dormant?
+- What is unresolved?
+- What can be confidently concluded?
+
+It does not infer psychology, intent, causation, or narrative.
 
 ## Quick Start
 
-1. Export your ChatGPT history
+1. Export data
 
-Download your ChatGPT data from OpenAI.
-
-Locate:
-
-`conversations.json`
+   Download your ChatGPT `conversations.json` from OpenAI.
 
 2. Install
 
-```bash
-git clone https://github.com/<your-org>/epistemic-graph-engine.git
-cd epistemic-graph-engine
-pip install -e .
-```
+   ```bash
+   git clone https://github.com/MineardAI/epistemic-graph-engine.git
+   cd epistemic-graph-engine
+   pip install -e .
+   ```
 
-3. Ingest your archive
+3. Run the full pipeline
 
-```bash
-python -m epistemic_graph.ingest path/to/conversations.json
-```
+   ```bash
+   # Ingest (Contract 001)
+   python -m epistemic_graph.ingest path/to/conversations.json
 
-This creates immutable evidence artifacts.
+   # Claims (002), Resolution (003), Timeline (004), Publishing (005)
+   # Run individual modules or use the top-level pipeline runner if available.
+   ```
 
-4. Build the graph
+4. Ask questions
 
-Run the remaining contracts:
+   Use exact IDs or whitelisted terms for best results. Broad queries correctly return low confidence.
 
-- 001 -> Ingestion
-- 002 -> Claims
-- 003 -> Evidence Resolution
-- 004 -> Timeline Reconstruction
-- 005 -> Publishing
+5. Export
 
-## Output
+   Generate sealed audit, executive, and research packages with manifests.
 
-The engine produces deterministic artifacts including:
+## Core Principles
 
-- `evidence.jsonl`
-- `observations.jsonl`
-- `claims.jsonl`
-- `claim_graph.json`
-- `answer.json`
-- `timeline_events.jsonl`
-- `concept_timeline.json`
-- `package_manifest.json`
-
-Every file can be regenerated from the same input archive.
-
-## Example Questions
-
-Once your archive is processed you can answer questions like:
-
-- Which project appeared first?
-- Show all evidence supporting a claim.
-- Find contradictory claims.
-- When did a concept become a specification?
-- Which ideas became dormant?
-- What evidence is still missing?
-
-## Why This Is Different
-
-Most AI memory systems summarize.
-
-The Epistemic Graph Engine preserves evidence.
-
-It never:
-
-- invents conclusions
-- rewrites conversations
-- infers psychology
-- performs semantic search
-- hides provenance
-
-Every result includes traceable source IDs.
+- Deterministic: Delete derived artifacts and rerun them to get identical byte-for-byte outputs.
+- Read-only layers: Each contract consumes prior artifacts without mutation.
+- Traceability: Every answer includes a full execution trace with source references.
+- Honest confidence: Zero or low scores mean insufficient structured evidence, not a failure.
+- No magic: No semantic search, embeddings, intent inference, or narrative generation.
+- Frozen architecture: Contracts 001-005 are immutable. Extend via new contracts.
 
 ## Architecture
 
 ```text
 ChatGPT Export
-      │
-      ▼
-001 Ingestion
-      ▼
-002 Claims
-      ▼
-003 Resolution
-      ▼
-004 Timeline
-      ▼
-005 Publishing
+      |
+      v
+001 Ingestion (immutable evidence + observations)
+      |
+      v
+002 Claims (projections, graph, bounties)
+      |
+      v
+003 Resolution (structural answer + trace)
+      |
+      v
+004 Timeline (events, maturity, gaps)
+      |
+      v
+005 Publishing (deterministic packages + verifier)
 ```
 
-Each layer is deterministic and read-only with respect to every layer above it.
+All layers are rule-based and source-gated.
 
 ## Repository Status
 
@@ -121,10 +89,24 @@ Future capabilities extend the engine through new contracts rather than modifyin
 ## Documentation
 
 - README
-- Contract 001 - Ingestion
-- Contract 002 - Claim Layer
-- Contract 003 - Evidence Resolution
-- Contract 004 - Timeline Reconstruction
-- Contract 005 - Publishing & Verification
+- [`Docs/Contract 001 - Epistemic Graph v0.md`](Docs/Contract%20001%20-%20Epistemic%20Graph%20v0.md)
+- [`Docs/Contract 002 - Claim Layer V1.md`](Docs/Contract%20002%20-%20Claim%20Layer%20V1.md)
+- [`Docs/Contract 003 - Evidence Resolution.md`](Docs/Contract%20003%20-%20Evidence%20Resolution.md)
+- [`Docs/Contract 004 - Timeline & Contract Res.md`](Docs/Contract%20004%20-%20Timeline%20%26%20Contract%20Res.md)
+- [`Docs/Contract 005 - Deterministic Publishing.md`](Docs/Contract%20005%20-%20Deterministic%20Publishing.md)
+- [`Docs/CONTRACT_001_VERIFIED.md`](Docs/CONTRACT_001_VERIFIED.md)
+- [`Docs/CONTRACT_002_VERIFIED.md`](Docs/CONTRACT_002_VERIFIED.md)
+- [`Docs/CONTRACT_003_IMPLEMENTATION_SPEC.md`](Docs/CONTRACT_003_IMPLEMENTATION_SPEC.md)
+- [`Docs/CONTRACT_003_VERIFIED.md`](Docs/CONTRACT_003_VERIFIED.md)
+- [`Docs/CONTRACT_004_IMPLEMENTATION_SPEC.md`](Docs/CONTRACT_004_IMPLEMENTATION_SPEC.md)
+- [`Docs/CONTRACT_004_VERIFIED.md`](Docs/CONTRACT_004_VERIFIED.md)
+- [`Docs/CONTRACT_005_IMPLEMENTATION_SPEC.md`](Docs/CONTRACT_005_IMPLEMENTATION_SPEC.md)
+- [`Docs/CONTRACT_005_VERIFIED.md`](Docs/CONTRACT_005_VERIFIED.md)
 
 Each contract includes an implementation specification and verification record.
+
+## Getting Started with Real Data
+
+Run the pipeline on your archive, generate an audit package with Contract 005, and inspect one `resolution_trace.json`. This shows exactly how the system reaches its output from evidence.
+
+Warning: raw, uncurated archives produce many low-maturity concepts and zero-confidence answers. This is expected and correct.

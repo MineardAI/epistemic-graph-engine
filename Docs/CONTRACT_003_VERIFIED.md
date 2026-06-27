@@ -49,3 +49,10 @@
 ## Verification Summary
 
 Contract 003 passed final verification. The implementation spec matches the implemented public interface, outputs are deterministic, upstream Contract 001 and Contract 002 artifacts remained byte-identical, and the freeze record is complete.
+
+## 6. Implementation Decisions, Deviations, & Ambiguities
+
+- Verified Post-Freeze Defect Remediation (2026-06-27)
+  - Defect Identified: During zero-hit query evaluations (e.g., searching for lifecycles with 0 matches), the `candidate_retrieval` and `confidence_calculation` trace steps emitted empty `source_ids: []` arrays, creating technically untraceable steps.
+  - Justification for Modification: Section 4.10 of Contract 003 explicitly mandates that every trace step must reference at least one source ID to preserve the audit trail.
+  - Remediation Action: Adjusted `epistemic_graph/resolution/trace.py` to employ a deterministic fallback. When an evaluation step generates an empty sub-graph match list, the step explicitly binds the executing `question_id` as its solitary source input. This ensures trace completeness without fabricating historical data.

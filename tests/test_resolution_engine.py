@@ -92,6 +92,23 @@ def test_non_whitelisted_exact_term_lookup_returns_invalid_query(contract2_artif
     assert any(step.step_type == TraceStepType.state_selection and step.output_ids == ["invalid_query"] for step in trace.trace_steps)
 
 
+def test_zero_hit_trace_steps_fall_back_to_question_id(contract2_artifacts) -> None:
+    answer, trace = resolve_query(
+        "lifecycle:contested",
+        contract2_artifacts.claims_path,
+        contract2_artifacts.claim_graph_path,
+        contract2_artifacts.bounties_path,
+    )
+
+    assert answer.resolution_state == ResolutionState.unanswerable
+    assert trace.question.question_id == "resolution-question_900daf184dc96dec6c0dd9dd"
+    candidate_step = next(step for step in trace.trace_steps if step.step_type == TraceStepType.candidate_retrieval)
+    confidence_step = next(step for step in trace.trace_steps if step.step_type == TraceStepType.confidence_calculation)
+
+    assert candidate_step.source_ids == [trace.question.question_id]
+    assert confidence_step.source_ids == [trace.question.question_id]
+
+
 def test_deterministic_answer_and_trace_generation(contract2_artifacts, tmp_path: Path) -> None:
     first = build_resolution_artifacts(
         "claim:claim_00072a8c4116a3a7da7c8366",

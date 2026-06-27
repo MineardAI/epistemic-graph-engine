@@ -16,7 +16,7 @@ def build_trace_step(
     detail_message: str,
     question_id: str,
 ) -> TraceStep:
-    source_ids_list = sorted(dict.fromkeys(source_ids))
+    source_ids_list = sorted(dict.fromkeys(source_ids)) or [question_id]
     input_ids_list = sorted(dict.fromkeys(input_ids))
     output_ids_list = sorted(dict.fromkeys(output_ids))
     step_payload = {
