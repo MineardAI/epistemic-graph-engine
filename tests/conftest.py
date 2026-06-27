@@ -7,6 +7,7 @@ import pytest
 from epistemic_graph.claims.builder import build_claim_artifacts
 from epistemic_graph.claims.serialization import load_jsonl, write_jsonl
 from epistemic_graph.ingest import ingest_archive
+from epistemic_graph.resolution import build_resolution_artifacts
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +24,20 @@ def contract1_artifacts(tmp_path: Path):
 def contract2_artifacts(contract1_artifacts, tmp_path: Path):
     output_dir = tmp_path / "contract2"
     return build_claim_artifacts(contract1_artifacts.observations_path, output_dir)
+
+
+@pytest.fixture()
+def contract3_artifacts(contract2_artifacts, tmp_path: Path):
+    claims = load_jsonl(contract2_artifacts.claims_path)
+    first_claim_id = claims[0]["claim_id"]
+    output_dir = tmp_path / "contract3"
+    return build_resolution_artifacts(
+        f"claim:{first_claim_id}",
+        contract2_artifacts.claims_path,
+        contract2_artifacts.claim_graph_path,
+        contract2_artifacts.bounties_path,
+        output_dir,
+    )
 
 
 @pytest.fixture()
