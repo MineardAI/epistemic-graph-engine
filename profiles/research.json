@@ -1,0 +1,120 @@
+{
+  "profile_name": "research",
+  "package_version": "0.1.0",
+  "package_schema_version": "005.v0",
+  "source_artifacts": [
+    "answer.json",
+    "bounties.jsonl",
+    "claim_graph.json",
+    "claims.jsonl",
+    "concept_maturity.json",
+    "concept_timeline.json",
+    "gap_windows.jsonl",
+    "observations.jsonl",
+    "resolution_trace.json",
+    "timeline_events.jsonl",
+    "timeline_report.md"
+  ],
+  "views": [
+    {
+      "name": "executive_summary",
+      "title": "Executive Summary",
+      "record_types": [
+        "package_identity",
+        "build_metadata",
+        "input",
+        "output",
+        "verification"
+      ],
+      "columns": [
+        {"header": "record_type", "field": "record_type"},
+        {"header": "section", "field": "section"},
+        {"header": "key", "field": "key"},
+        {"header": "value", "field": "value"},
+        {"header": "relative_path", "field": "relative_path"},
+        {"header": "size_bytes", "field": "size_bytes"},
+        {"header": "sha256", "field": "sha256"}
+      ],
+      "sort_keys": [
+        "sort_section",
+        "sort_key",
+        "relative_path"
+      ]
+    },
+    {
+      "name": "claim_dossier",
+      "title": "Claim Dossier",
+      "record_types": [
+        "graph_summary",
+        "claim",
+        "support_edge",
+        "contradiction_edge",
+        "bounty"
+      ],
+      "columns": [
+        {"header": "record_type", "field": "record_type"},
+        {"header": "claim_id", "field": "claim_id"},
+        {"header": "claim_type", "field": "claim_type"},
+        {"header": "claim_label", "field": "claim_label"},
+        {"header": "lifecycle", "field": "lifecycle"},
+        {"header": "builder_version", "field": "builder_version"},
+        {"header": "bounty_id", "field": "bounty_id"},
+        {"header": "status", "field": "status"},
+        {"header": "edge_id", "field": "edge_id"},
+        {"header": "edge_type", "field": "edge_type"},
+        {"header": "source", "field": "source"},
+        {"header": "target", "field": "target"},
+        {"header": "source_observation_ids", "field": "source_observation_ids"},
+        {"header": "source_evidence_ids", "field": "source_evidence_ids"},
+        {"header": "source_observation_hashes", "field": "source_observation_hashes"},
+        {"header": "hypotheses", "field": "hypotheses"},
+        {"header": "missing_evidence", "field": "missing_evidence"},
+        {"header": "expected_source_types", "field": "expected_source_types"},
+        {"header": "potential_resolution_impact", "field": "potential_resolution_impact"},
+        {"header": "shared_evidence_id", "field": "shared_evidence_id"},
+        {"header": "summary", "field": "summary"}
+      ],
+      "sort_keys": [
+        "sort_rank",
+        "sort_id"
+      ]
+    },
+    {
+      "name": "timeline_export",
+      "title": "Timeline Export",
+      "record_types": [
+        "event",
+        "concept_timeline",
+        "maturity",
+        "gap_window"
+      ],
+      "columns": [
+        {"header": "record_type", "field": "record_type"},
+        {"header": "event_id", "field": "event_id"},
+        {"header": "timestamp", "field": "timestamp"},
+        {"header": "concept", "field": "concept"},
+        {"header": "action_type", "field": "action_type"},
+        {"header": "source_observation_id", "field": "source_observation_id"},
+        {"header": "source_evidence_id", "field": "source_evidence_id"},
+        {"header": "first_timestamp", "field": "first_timestamp"},
+        {"header": "latest_timestamp", "field": "latest_timestamp"},
+        {"header": "total_occurrences", "field": "total_occurrences"},
+        {"header": "maturity_state", "field": "maturity_state"},
+        {"header": "state_reason", "field": "state_reason"},
+        {"header": "start_timestamp", "field": "start_timestamp"},
+        {"header": "end_timestamp", "field": "end_timestamp"},
+        {"header": "duration", "field": "duration"},
+        {"header": "previous_observation", "field": "previous_observation"},
+        {"header": "next_observation", "field": "next_observation"}
+      ],
+      "sort_keys": [
+        "sort_timestamp",
+        "sort_rank",
+        "concept",
+        "source_observation_id",
+        "source_evidence_id",
+        "event_id"
+      ]
+    }
+  ]
+}

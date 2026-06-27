@@ -1,0 +1,43 @@
+{
+  "profile_name": "executive",
+  "package_version": "0.1.0",
+  "package_schema_version": "005.v0",
+  "source_artifacts": [
+    "answer.json",
+    "claims.jsonl",
+    "claim_graph.json",
+    "bounties.jsonl",
+    "concept_maturity.json",
+    "concept_timeline.json",
+    "gap_windows.jsonl",
+    "timeline_events.jsonl",
+    "timeline_report.md"
+  ],
+  "views": [
+    {
+      "name": "executive_summary",
+      "title": "Executive Summary",
+      "record_types": [
+        "package_identity",
+        "build_metadata",
+        "input",
+        "output",
+        "verification"
+      ],
+      "columns": [
+        {"header": "record_type", "field": "record_type"},
+        {"header": "section", "field": "section"},
+        {"header": "key", "field": "key"},
+        {"header": "value", "field": "value"},
+        {"header": "relative_path", "field": "relative_path"},
+        {"header": "size_bytes", "field": "size_bytes"},
+        {"header": "sha256", "field": "sha256"}
+      ],
+      "sort_keys": [
+        "sort_section",
+        "sort_key",
+        "relative_path"
+      ]
+    }
+  ]
+}
