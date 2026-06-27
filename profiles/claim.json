@@ -1,0 +1,77 @@
+{
+  "profile_name": "claim",
+  "package_version": "0.1.0",
+  "package_schema_version": "005.v0",
+  "source_artifacts": [
+    "answer.json",
+    "bounties.jsonl",
+    "claim_graph.json",
+    "claims.jsonl",
+    "resolution_trace.json"
+  ],
+  "views": [
+    {
+      "name": "executive_summary",
+      "title": "Executive Summary",
+      "record_types": [
+        "package_identity",
+        "build_metadata",
+        "input",
+        "output",
+        "verification"
+      ],
+      "columns": [
+        {"header": "record_type", "field": "record_type"},
+        {"header": "section", "field": "section"},
+        {"header": "key", "field": "key"},
+        {"header": "value", "field": "value"},
+        {"header": "relative_path", "field": "relative_path"},
+        {"header": "size_bytes", "field": "size_bytes"},
+        {"header": "sha256", "field": "sha256"}
+      ],
+      "sort_keys": [
+        "sort_section",
+        "sort_key",
+        "relative_path"
+      ]
+    },
+    {
+      "name": "claim_dossier",
+      "title": "Claim Dossier",
+      "record_types": [
+        "graph_summary",
+        "claim",
+        "support_edge",
+        "contradiction_edge",
+        "bounty"
+      ],
+      "columns": [
+        {"header": "record_type", "field": "record_type"},
+        {"header": "claim_id", "field": "claim_id"},
+        {"header": "claim_type", "field": "claim_type"},
+        {"header": "claim_label", "field": "claim_label"},
+        {"header": "lifecycle", "field": "lifecycle"},
+        {"header": "builder_version", "field": "builder_version"},
+        {"header": "bounty_id", "field": "bounty_id"},
+        {"header": "status", "field": "status"},
+        {"header": "edge_id", "field": "edge_id"},
+        {"header": "edge_type", "field": "edge_type"},
+        {"header": "source", "field": "source"},
+        {"header": "target", "field": "target"},
+        {"header": "source_observation_ids", "field": "source_observation_ids"},
+        {"header": "source_evidence_ids", "field": "source_evidence_ids"},
+        {"header": "source_observation_hashes", "field": "source_observation_hashes"},
+        {"header": "hypotheses", "field": "hypotheses"},
+        {"header": "missing_evidence", "field": "missing_evidence"},
+        {"header": "expected_source_types", "field": "expected_source_types"},
+        {"header": "potential_resolution_impact", "field": "potential_resolution_impact"},
+        {"header": "shared_evidence_id", "field": "shared_evidence_id"},
+        {"header": "summary", "field": "summary"}
+      ],
+      "sort_keys": [
+        "sort_rank",
+        "sort_id"
+      ]
+    }
+  ]
+}
